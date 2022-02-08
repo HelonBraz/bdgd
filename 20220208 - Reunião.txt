@@ -1,0 +1,38 @@
+
+1) Na tabela CTMT cada linha se refere a um alimentador.
+   Para cada valor na coluna "PAC": pac
+
+2) Na tabela SSDMT, selecionar todas as ocorrências de pac nas
+   colunas "PAC_1" ou "PAC_2".
+   Caso não encontre nenhuma ocorrência: informar.
+
+3) Para cada trecho obtido em 2, descobrir "origem" e "destino".
+
+4) Para cada "destino", construir um alimentador por BUSCA LARGURA.
+
+
+
+Começa com vetores:
+C = conectados
+D = desconectados
+
+C = "destino"
+D = Todos os trechos que ainda não foram conectados, 
+    exceto trechos com chaves abertas.
+
+
+1° etapa: 
+	Enquanto C não estiver vazio: atual = 1° elemento de C
+2° etapa:
+        incidentes = obtém todos os trechos de D que são incidentes em atual
+                     "incidente é todo trecho em que "PAC_1" ou "PAC_2" é igual a "destino".
+        remotos = obtém de incidentes os PACs de destino.
+3° etapa:
+        Para cada PAC de remotos:
+		Adiciona o trecho incidente no alimentador atual: [atual => remoto];
+		Retira o identificador remoto da lista D;
+		Retira o trecho incidente da lista de trechos
+		Adiciona o PAC remoto no final de C;
+	Remove "atual" de C
+	Retorna para 1° etapa.
+
